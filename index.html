@@ -3,48 +3,268 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dịch Vụ Trực Tuyến Đa Năng</title>
+    <title>iFix - Mua Bán & Sửa Chữa Điện Thoại Uy Tín</title>
+    <!-- Tải Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- LIÊN KẾT ĐẾN TỆP CSS TÙY CHỈNH -->
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
 </head>
-<body>
+<body class="text-gray-800">
 
-    <header class="header">
-        <div class="container">
-            <h1 class="logo">DichVu247</h1>
-            <nav>
-                <ul>
-                    <li><a href="#services">Dịch vụ</a></li>
-                    <li><a href="#about">Về chúng tôi</a></li>
-                    <li><a href="#contact">Liên hệ</a></li>
-                </ul>
+    <!-- Header (Menu) -->
+    <header class="bg-white sticky top-0 z-50 shadow-md">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
+            <!-- Logo/Tên cửa hàng -->
+            <div class="text-2xl font-extrabold text-blue-600">
+                <span class="text-green-500">i</span>Fix
+            </div>
+
+            <!-- Navigation Desktop -->
+            <nav class="hidden md:flex space-x-8 font-medium">
+                <a href="#home" class="text-gray-600 hover:text-blue-600 transition duration-300">Trang Chủ</a>
+                <a href="#services" class="text-gray-600 hover:text-blue-600 transition duration-300">Dịch Vụ</a>
+                <a href="#products" class="text-gray-600 hover:text-blue-600 transition duration-300">Sản Phẩm</a>
+                <a href="#contact" class="text-gray-600 hover:text-blue-600 transition duration-300">Liên Hệ</a>
+            </nav>
+
+            <!-- Nút hành động -->
+            <button onclick="showAlert('Đã gọi Hotline: 0912 345 678')" class="bg-blue-600 text-white px-5 py-2 rounded-lg hover:bg-blue-700 transition duration-300 font-semibold shadow-md hidden md:block">
+                Hotline: 0912 345 678
+            </button>
+
+            <!-- Menu Mobile Button -->
+            <button id="mobile-menu-btn" class="md:hidden text-gray-800 focus:outline-none">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+            </button>
+        </div>
+
+        <!-- Menu Mobile Dropdown -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white shadow-lg">
+            <nav class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="#home" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-gray-50 hover:text-blue-600">Trang Chủ</a>
+                <a href="#services" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-gray-50 hover:text-blue-600">Dịch Vụ</a>
+                <a href="#products" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-gray-50 hover:text-blue-600">Sản Phẩm</a>
+                <a href="#contact" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-gray-50 hover:text-blue-600">Liên Hệ</a>
+                <button onclick="showAlert('Đã gọi Hotline: 0912 345 678')" class="w-full text-left px-3 py-2 rounded-md text-base font-medium text-white bg-blue-600 hover:bg-blue-700 transition duration-300">
+                    Hotline: 0912 345 678
+                </button>
             </nav>
         </div>
     </header>
 
-    <section class="hero">
-        <div class="container">
-            <h2>Giải pháp dịch vụ tiện lợi ngay trong tầm tay bạn.</h2>
-            <p>Khám phá và đặt các dịch vụ từ in ấn, sửa chữa đến làm đẹp và vận chuyển chỉ trong vài cú nhấp chuột.</p>
-            <a href="#services" class="cta-button">Khám Phá Ngay</a>
+    <!-- Modal cho thông báo -->
+    <div id="alert-modal" class="fixed inset-0 bg-gray-600 bg-opacity-75 hidden items-center justify-center z-[100]">
+        <div class="bg-white p-6 rounded-xl shadow-2xl max-w-sm w-full transform transition-all scale-100 opacity-100">
+            <h3 class="text-xl font-bold text-blue-600 mb-4">Thông báo</h3>
+            <p id="alert-message" class="text-gray-700 mb-6"></p>
+            <button onclick="hideAlert()" class="w-full bg-green-500 text-white py-2 rounded-lg hover:bg-green-600 transition duration-300 font-semibold">
+                Đóng
+            </button>
         </div>
-    </section>
-
-    <section id="services" class="services">
-        <div class="container">
-            <h3>Các Dịch Vụ Của Chúng Tôi 🚀</h3>
-            <div class="service-list">
+    </div>
+    
+    <main>
+        <!-- Hero Section -->
+        <section id="home" class="hero-bg text-center py-24 sm:py-32 text-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <h1 class="text-4xl sm:text-6xl font-extrabold mb-4 leading-tight">
+                    Giải Pháp Toàn Diện Cho Điện Thoại Của Bạn
+                </h1>
+                <p class="text-xl sm:text-2xl font-light mb-8 max-w-3xl mx-auto">
+                    Mua bán điện thoại cũ/mới, sửa chữa chuyên nghiệp, linh kiện chính hãng.
+                </p>
+                <div class="space-y-4 sm:space-y-0 sm:space-x-6">
+                    <a href="#services" class="inline-block bg-green-500 text-white text-lg font-bold px-8 py-3 rounded-xl hover:bg-green-600 transition duration-300 shadow-lg transform hover:scale-105">
+                        Xem Dịch Vụ Sửa Chữa
+                    </a>
+                    <a href="#products" class="inline-block bg-white text-blue-600 text-lg font-bold px-8 py-3 rounded-xl hover:bg-gray-100 transition duration-300 shadow-lg transform hover:scale-105">
+                        Mua Điện Thoại Ngay
+                    </a>
                 </div>
-        </div>
-    </section>
+            </div>
+        </section>
 
-    <footer id="contact" class="footer">
-        <div class="container">
-            <p>&copy; 2025 DichVu247. Liên hệ: <span id="contact-info"></span></p>
+        <!-- Services Section -->
+        <section id="services" class="py-16 sm:py-24 bg-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-center mb-12 text-blue-600">Dịch Vụ Nổi Bật Của iFix</h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    
+                    <!-- Dịch vụ 1: Sửa chữa -->
+                    <div class="bg-gray-50 p-8 rounded-xl card-shadow text-center hover:bg-gray-100 transition duration-300">
+                        <div class="text-blue-500 mx-auto mb-4 w-12 h-12 flex items-center justify-center bg-blue-100 rounded-full">
+                            <!-- Icon Wrench -->
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path></svg>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3">Sửa Chữa Lấy Liền</h3>
+                        <p class="text-gray-600">Thay màn hình, pin, sửa mainboard, khắc phục lỗi phần mềm. Bảo hành uy tín, linh kiện zin.</p>
+                        <a href="#" class="mt-4 inline-block text-blue-600 font-semibold hover:text-blue-800" onclick="showAlert('Bạn đã chọn dịch vụ Sửa Chữa. Hãy liên hệ để được tư vấn!')">Tìm Hiểu Thêm &rarr;</a>
+                    </div>
+                    
+                    <!-- Dịch vụ 2: Mua bán -->
+                    <div class="bg-gray-50 p-8 rounded-xl card-shadow text-center hover:bg-gray-100 transition duration-300">
+                        <div class="text-green-500 mx-auto mb-4 w-12 h-12 flex items-center justify-center bg-green-100 rounded-full">
+                            <!-- Icon Shopping Bag -->
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path></svg>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3">Mua Bán Điện Thoại</h3>
+                        <p class="text-gray-600">Đa dạng các dòng iPhone, Samsung, Xiaomi mới/cũ, giá cả cạnh tranh, bao test 7 ngày.</p>
+                        <a href="#products" class="mt-4 inline-block text-blue-600 font-semibold hover:text-blue-800">Xem Sản Phẩm &rarr;</a>
+                    </div>
+
+                    <!-- Dịch vụ 3: Phụ kiện -->
+                    <div class="bg-gray-50 p-8 rounded-xl card-shadow text-center hover:bg-gray-100 transition duration-300">
+                        <div class="text-red-500 mx-auto mb-4 w-12 h-12 flex items-center justify-center bg-red-100 rounded-full">
+                            <!-- Icon Headphones -->
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3">Phụ Kiện Chính Hãng</h3>
+                        <p class="text-gray-600">Ốp lưng, tai nghe, sạc dự phòng, cáp sạc chất lượng cao từ các thương hiệu hàng đầu.</p>
+                        <a href="#" class="mt-4 inline-block text-blue-600 font-semibold hover:text-blue-800" onclick="showAlert('Mục Phụ Kiện đang được cập nhật. Cảm ơn bạn!')">Khám Phá Ngay &rarr;</a>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- Product Preview Section -->
+        <section id="products" class="py-16 sm:py-24 bg-gray-50">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-center mb-12 text-blue-600">Sản Phẩm Nổi Bật</h2>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                    
+                    <!-- Sản phẩm 1 -->
+                    <div class="bg-white rounded-xl card-shadow overflow-hidden transform hover:scale-[1.02] transition duration-300">
+                        <img src="https://placehold.co/600x400/38bdf8/ffffff?text=iPhone+15" onerror="this.onerror=null; this.src='https://placehold.co/600x400/38bdf8/ffffff?text=Điện+Thoại';" alt="iPhone 15 Pro Max" class="w-full h-48 object-cover">
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold mb-2">iPhone 15 Pro Max (Cũ 99%)</h3>
+                            <p class="text-green-600 font-bold text-2xl mb-4">25,990,000₫</p>
+                            <button onclick="showAlert('Đã thêm iPhone 15 Pro Max vào giỏ hàng!')" class="w-full bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600 transition duration-300">
+                                Mua Ngay
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Sản phẩm 2 -->
+                    <div class="bg-white rounded-xl card-shadow overflow-hidden transform hover:scale-[1.02] transition duration-300">
+                        <img src="https://placehold.co/600x400/8b5cf6/ffffff?text=Samsung+Fold" onerror="this.onerror=null; this.src='https://placehold.co/600x400/8b5cf6/ffffff?text=Điện+Thoại';" alt="Samsung Galaxy Z Fold 5" class="w-full h-48 object-cover">
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold mb-2">Samsung Z Fold 5 (Mới)</h3>
+                            <p class="text-green-600 font-bold text-2xl mb-4">32,490,000₫</p>
+                            <button onclick="showAlert('Đã thêm Samsung Z Fold 5 vào giỏ hàng!')" class="w-full bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600 transition duration-300">
+                                Mua Ngay
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Sản phẩm 3 -->
+                    <div class="bg-white rounded-xl card-shadow overflow-hidden transform hover:scale-[1.02] transition duration-300">
+                        <img src="https://placehold.co/600x400/ef4444/ffffff?text=Xiaomi+14" onerror="this.onerror=null; this.src='https://placehold.co/600x400/ef4444/ffffff?text=Điện+Thoại';" alt="Xiaomi 14 Pro" class="w-full h-48 object-cover">
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold mb-2">Xiaomi 14 Pro</h3>
+                            <p class="text-green-600 font-bold text-2xl mb-4">19,990,000₫</p>
+                            <button onclick="showAlert('Đã thêm Xiaomi 14 Pro vào giỏ hàng!')" class="w-full bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600 transition duration-300">
+                                Mua Ngay
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Sản phẩm 4 -->
+                    <div class="bg-white rounded-xl card-shadow overflow-hidden transform hover:scale-[1.02] transition duration-300">
+                        <img src="https://placehold.co/600x400/3b82f6/ffffff?text=Pin+Dự+Phòng" onerror="this.onerror=null; this.src='https://placehold.co/600x400/3b82f6/ffffff?text=Phụ+Kiện';" alt="Sạc Dự Phòng 20000mAh" class="w-full h-48 object-cover">
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold mb-2">Sạc Dự Phòng 20000mAh</h3>
+                            <p class="text-green-600 font-bold text-2xl mb-4">790,000₫</p>
+                            <button onclick="showAlert('Đã thêm Pin Dự Phòng vào giỏ hàng!')" class="w-full bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600 transition duration-300">
+                                Mua Ngay
+                            </button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Form Section -->
+        <section id="contact" class="py-16 sm:py-24 bg-white">
+            <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-center mb-12 text-blue-600">Liên Hệ & Đặt Lịch</h2>
+                <div class="bg-gray-50 p-8 rounded-xl card-shadow">
+                    <form onsubmit="handleFormSubmit(event)">
+                        <div class="mb-4">
+                            <label for="name" class="block text-sm font-medium text-gray-700 mb-1">Họ tên</label>
+                            <input type="text" id="name" name="name" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500">
+                        </div>
+                        <div class="mb-4">
+                            <label for="phone" class="block text-sm font-medium text-gray-700 mb-1">Số điện thoại</label>
+                            <input type="tel" id="phone" name="phone" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500">
+                        </div>
+                        <div class="mb-4">
+                            <label for="service_type" class="block text-sm font-medium text-gray-700 mb-1">Chọn dịch vụ</label>
+                            <select id="service_type" name="service_type" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500">
+                                <option value="repair">Sửa chữa điện thoại</option>
+                                <option value="buy">Tư vấn mua điện thoại</option>
+                                <option value="other">Yêu cầu khác</option>
+                            </select>
+                        </div>
+                        <div class="mb-6">
+                            <label for="message" class="block text-sm font-medium text-gray-700 mb-1">Nội dung</label>
+                            <textarea id="message" name="message" rows="4" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500"></textarea>
+                        </div>
+                        <button type="submit" class="w-full bg-blue-600 text-white font-bold py-3 rounded-lg hover:bg-blue-700 transition duration-300 shadow-md">
+                            Gửi Yêu Cầu Tư Vấn
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-4 gap-8">
+            
+            <!-- Cột 1: Thông tin cửa hàng -->
+            <div>
+                <h4 class="text-xl font-bold mb-4 text-green-400">iFix Store</h4>
+                <p class="text-gray-400 text-sm">Chuyên cung cấp dịch vụ sửa chữa và mua bán điện thoại di động uy tín hàng đầu.</p>
+            </div>
+
+            <!-- Cột 2: Dịch vụ -->
+            <div>
+                <h4 class="text-lg font-semibold mb-4">Dịch Vụ</h4>
+                <ul class="space-y-2 text-sm">
+                    <li><a href="#services" class="text-gray-400 hover:text-white transition duration-300">Sửa Chữa Phần Cứng</a></li>
+                    <li><a href="#services" class="text-gray-400 hover:text-white transition duration-300">Bán Điện Thoại Cũ/Mới</a></li>
+                    <li><a href="#services" class="text-gray-400 hover:text-white transition duration-300">Thay Linh Kiện Chính Hãng</a></li>
+                </ul>
+            </div>
+
+            <!-- Cột 3: Liên kết nhanh -->
+            <div>
+                <h4 class="text-lg font-semibold mb-4">Liên Kết</h4>
+                <ul class="space-y-2 text-sm">
+                    <li><a href="#home" class="text-gray-400 hover:text-white transition duration-300">Trang Chủ</a></li>
+                    <li><a href="#products" class="text-gray-400 hover:text-white transition duration-300">Sản Phẩm</a></li>
+                    <li><a href="#contact" class="text-gray-400 hover:text-white transition duration-300">Chính Sách Bảo Hành</a></li>
+                </ul>
+            </div>
+
+            <!-- Cột 4: Liên hệ -->
+            <div>
+                <h4 class="text-lg font-semibold mb-4">Liên Hệ</h4>
+                <p class="text-gray-400 text-sm">Địa chỉ: 123 Đường Điện Biên Phủ, Quận X, TP.HCM</p>
+                <p class="text-gray-400 text-sm mt-1">Hotline: 0912 345 678</p>
+                <p class="text-gray-400 text-sm mt-1">Email: support@ifix.vn</p>
+            </div>
+        </div>
+        <div class="text-center text-gray-500 text-xs mt-8 border-t border-gray-700 pt-4">
+            &copy; 2024 iFix Store. Bảo lưu mọi quyền.
         </div>
     </footer>
 
+    <!-- LIÊN KẾT ĐẾN TỆP JAVASCRIPT -->
     <script src="script.js"></script>
 </body>
-
 </html>
