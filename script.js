@@ -1,46 +1,63 @@
-document.addEventListener('DOMContentLoaded', function() {
-    // 1. Dữ liệu các dịch vụ
-    const services = [
-        { name: "In Ấn & Thiết Kế", icon: "🖨️", description: "Dịch vụ in ấn tài liệu, banner, danh thiếp nhanh chóng." },
-        { name: "Sửa Chữa Điện Lạnh", icon: "❄️", description: "Sửa chữa, bảo trì điều hòa, tủ lạnh, máy giặt tận nơi." },
-        { name: "Làm Móng (Nails)", icon: "💅", description: "Làm móng, sơn gel, đắp bột tại nhà hoặc tại studio." },
-        { name: "Trà Sữa & Đồ Uống", icon: "🥤", description: "Đặt mua trà sữa, cà phê và đồ uống yêu thích giao hàng tận nơi." },
-        { name: "Taxi & Vận Chuyển", icon: "🚗", description: "Đặt xe taxi, xe công nghệ an toàn và tiện lợi." },
-        { name: "Hàn Sắt & Cơ Khí", icon: "🛠️", description: "Nhận thi công, sửa chữa các công trình hàn sắt, cửa cổng." }
-    ];
+// script.js
 
-    const serviceListContainer = document.querySelector('.service-list');
+// DOMContentLoaded ensures JS runs after the HTML is fully loaded
+document.addEventListener('DOMContentLoaded', () => {
+    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
 
-    // 2. Hàm chèn dịch vụ vào HTML
-    function renderServices() {
-        services.forEach(service => {
-            const card = document.createElement('div');
-            card.className = 'service-card';
-            card.innerHTML = `
-                <span class="service-icon">${service.icon}</span>
-                <h4>${service.name}</h4>
-                <p>${service.description}</p>
-                <p><a href="#">Đặt Dịch Vụ &rarr;</a></p>
-            `;
-            serviceListContainer.appendChild(card);
+    // Handle mobile menu toggle
+    if (mobileMenuBtn && mobileMenu) {
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
         });
     }
-
-    // 3. Hiển thị thông tin liên hệ động
-    const contactInfoElement = document.getElementById('contact-info');
-    contactInfoElement.textContent = 'support@dichvu247.com | 090-XXXX-YYYY';
-
-
-    // 4. Gọi hàm render
-    renderServices();
-
-    // 5. Thêm chức năng cuộn mượt (Scroll-smooth) cho thanh điều hướng
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
-            e.preventDefault();
-            document.querySelector(this.getAttribute('href')).scrollIntoView({
-                behavior: 'smooth'
-            });
-        });
-    });
 });
+
+// Function to display the notification modal (replaces alert() for better UX)
+function showAlert(message) {
+    const modal = document.getElementById('alert-modal');
+    const msgElement = document.getElementById('alert-message');
+
+    if (msgElement) {
+        msgElement.textContent = message;
+    }
+    if (modal) {
+        // Show modal by removing 'hidden' and adding 'flex'
+        modal.classList.remove('hidden');
+        modal.classList.add('flex');
+    }
+}
+
+// Function to hide the notification modal
+function hideAlert() {
+    const modal = document.getElementById('alert-modal');
+    if (modal) {
+        // Hide modal by adding 'hidden' and removing 'flex'
+        modal.classList.add('hidden');
+        modal.classList.remove('flex');
+    }
+}
+
+// Handle contact form submission
+function handleFormSubmit(event) {
+    event.preventDefault(); // Prevent form submission (page reload)
+
+    const name = document.getElementById('name').value;
+    const phone = document.getElementById('phone').value;
+    const service = document.getElementById('service_type').value;
+    // const message = document.getElementById('message').value; // Message is not used in the success text
+
+    // In a real environment, data would be sent to the server here.
+    // (e.g., using Fetch API or Axios to submit the form data)
+
+    // Simulate successful submission and display notification
+    const serviceText = service === 'repair' ? 'Sửa chữa điện thoại' : 
+                        service === 'buy' ? 'Tư vấn mua điện thoại' : 'Yêu cầu khác';
+
+    const successMessage = `Cảm ơn ${name}! Yêu cầu của bạn về dịch vụ "${serviceText}" đã được ghi nhận. Chúng tôi sẽ liên hệ lại qua số ${phone} sớm nhất.`;
+    
+    showAlert(successMessage);
+
+    // Clear the form after successful submission
+    event.target.reset();
+}
