@@ -1,161 +1,20 @@
-/* Thiết lập cơ bản */
-:root {
-    --primary-color: #007bff; /* Màu chủ đạo: Xanh dương */
-    --secondary-color: #28a745; /* Màu phụ: Xanh lá cây */
-    --text-color: #333;
-    --bg-color: #f8f9fa;
-    --card-bg: #fff;
-}
+/* style.css */
 
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
+/* Import Font Inter */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
 
+/* Custom Styles */
 body {
-    font-family: 'Roboto', sans-serif;
-    line-height: 1.6;
-    color: var(--text-color);
-    background-color: var(--bg-color);
+    font-family: 'Inter', sans-serif;
+    background-color: #f7f9fb;
 }
-
-a {
-    text-decoration: none;
-    color: var(--primary-color);
+.hero-bg {
+    /* Background image and gradient overlay for the Hero section */
+    background: linear-gradient(135deg, rgba(34, 197, 94, 0.9), rgba(59, 130, 246, 0.9)), url('https://placehold.co/1200x600/1f2937/ffffff?text=Dịch+Vụ+Di+Động');
+    background-size: cover;
+    background-position: center;
 }
-
-ul {
-    list-style: none;
-}
-
-.container {
-    width: 85%;
-    max-width: 1200px;
-    margin: auto;
-    overflow: hidden;
-}
-
-/* Header và Navigation */
-.header {
-    background: var(--card-bg);
-    color: var(--text-color);
-    padding: 1rem 0;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-}
-
-.header .container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.logo {
-    font-size: 1.8rem;
-    font-weight: 700;
-    color: var(--primary-color);
-}
-
-nav ul {
-    display: flex;
-}
-
-nav ul li a {
-    color: var(--text-color);
-    padding: 0.5rem 1rem;
-    transition: color 0.3s;
-}
-
-nav ul li a:hover {
-    color: var(--primary-color);
-}
-
-/* Phần Giới thiệu (Hero) */
-.hero {
-    background: var(--primary-color);
-    color: var(--card-bg);
-    padding: 4rem 0;
-    text-align: center;
-}
-
-.hero h2 {
-    font-size: 2.5rem;
-    margin-bottom: 1rem;
-}
-
-.hero p {
-    font-size: 1.2rem;
-    margin-bottom: 2rem;
-}
-
-.cta-button {
-    display: inline-block;
-    background: var(--secondary-color);
-    color: var(--card-bg);
-    padding: 0.75rem 1.5rem;
-    border-radius: 5px;
-    font-size: 1rem;
-    transition: background-color 0.3s;
-}
-
-.cta-button:hover {
-    background: #1e7e34; /* Màu xanh đậm hơn */
-}
-
-/* Phần Dịch vụ */
-.services {
-    padding: 4rem 0;
-    text-align: center;
-}
-
-.services h3 {
-    font-size: 2rem;
-    margin-bottom: 3rem;
-    color: var(--primary-color);
-}
-
-.service-list {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 20px;
-}
-
-.service-card {
-    background: var(--card-bg);
-    padding: 1.5rem;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-    transition: transform 0.3s, box-shadow 0.3s;
-    text-align: left;
-}
-
-.service-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 16px rgba(0,0,0,0.2);
-}
-
-.service-card h4 {
-    color: var(--primary-color);
-    font-size: 1.4rem;
-    margin-bottom: 0.5rem;
-}
-
-.service-card p {
-    font-size: 0.95rem;
-    color: #555;
-}
-
-.service-icon {
-    font-size: 2rem;
-    margin-bottom: 1rem;
-    color: var(--secondary-color);
-}
-
-/* Footer */
-.footer {
-    background: #343a40;
-    color: var(--card-bg);
-    text-align: center;
-    padding: 1.5rem 0;
-    font-size: 0.9rem;
+.card-shadow {
+    /* Custom shadow for service/product cards */
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
 }
