@@ -1,5 +1,8 @@
 // script.js
 
+// Phone number updated based on user's image (Zalo: 07.07.30.60.79)
+const PHONG_MOBILE_HOTLINE = '0707 306 079';
+
 // DOMContentLoaded ensures JS runs after the HTML is fully loaded
 document.addEventListener('DOMContentLoaded', () => {
     const mobileMenuBtn = document.getElementById('mobile-menu-btn');
@@ -45,14 +48,25 @@ function handleFormSubmit(event) {
     const name = document.getElementById('name').value;
     const phone = document.getElementById('phone').value;
     const service = document.getElementById('service_type').value;
-    // const message = document.getElementById('message').value; // Message is not used in the success text
-
-    // In a real environment, data would be sent to the server here.
-    // (e.g., using Fetch API or Axios to submit the form data)
 
     // Simulate successful submission and display notification
-    const serviceText = service === 'repair' ? 'Sửa chữa điện thoại' : 
-                        service === 'buy' ? 'Tư vấn mua điện thoại' : 'Yêu cầu khác';
+    let serviceText = '';
+    switch(service) {
+        case 'repair':
+            serviceText = 'Sửa chữa Mainboard';
+            break;
+        case 'screen':
+            serviceText = 'Ép Kính/Thay Màn Hình';
+            break;
+        case 'buy':
+            serviceText = 'Tư vấn mua/bán/thâu xác điện thoại';
+            break;
+        case 'other':
+            serviceText = 'Yêu cầu khác';
+            break;
+        default:
+            serviceText = 'Dịch vụ chung';
+    }
 
     const successMessage = `Cảm ơn ${name}! Yêu cầu của bạn về dịch vụ "${serviceText}" đã được ghi nhận. Chúng tôi sẽ liên hệ lại qua số ${phone} sớm nhất.`;
     
