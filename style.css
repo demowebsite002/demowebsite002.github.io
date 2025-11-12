@@ -10,7 +10,7 @@ body {
 }
 .hero-bg {
     /* Background image and gradient overlay for the Hero section */
-    background: linear-gradient(135deg, rgba(34, 197, 94, 0.9), rgba(59, 130, 246, 0.9)), url('https://placehold.co/1200x600/1f2937/ffffff?text=Dịch+Vụ+Di+Động');
+    background: linear-gradient(135deg, rgba(34, 197, 94, 0.9), rgba(59, 130, 246, 0.9)), url('https://placehold.co/1200x600/1f2937/ffffff?text=PHONG+MOBILE+Chuyên+Sửa+Chữa');
     background-size: cover;
     background-position: center;
 }
